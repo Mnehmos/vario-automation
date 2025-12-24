@@ -33,6 +33,12 @@ jobs:
       - name: Build
         run: npm run build
       
+      - name: Inject secrets
+        run: |
+          # Replace placeholders in built demo page
+          find ./dist -name "*.html" -o -name "*.js" | xargs sed -i 's|{{OPENAI_API_KEY}}|${{ secrets.OPENAI_API_KEY }}|g'
+          find ./dist -name "*.html" -o -name "*.js" | xargs sed -i 's|{{MSHA_RAG_URL}}|${{ secrets.MSHA_RAG_URL }}|g'
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

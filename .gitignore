@@ -17,6 +17,10 @@ pnpm-debug.log*
 .env
 .env.production
 
+# local dev secrets
+public/local.config.js
+local.config.js
+
 # macOS-specific files
 .DS_Store
 
